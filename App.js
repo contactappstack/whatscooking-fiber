@@ -142,7 +142,7 @@ const StackNavigatorOptions = {
 
 const ExploreNavigator = StackNavigator({
     Explore: { screen: Explore },
-    Comments: { screen: Comments }
+    Comments: { screen: Comments },
 }, StackNavigatorOptions);
 
 const ProfileNavigator = StackNavigator({
