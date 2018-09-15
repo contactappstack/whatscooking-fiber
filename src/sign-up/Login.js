@@ -1,7 +1,7 @@
 import autobind from "autobind-decorator";
 import * as React from "react";
 import {TextInput} from "react-native";
-
+import { AsyncStorage } from 'react-native';
 import SignUpContainer from "./SignUpContainer";
 import firebase from "firebase";
 import {TextField, Firebase} from "../components";
@@ -26,12 +26,21 @@ export default class Login extends React.Component<NavigationProps<*>, LoginStat
         if (type === 'success') {
         // Build Firebase credential with the Facebook access token.
         const credential = firebase.auth.FacebookAuthProvider.credential(token);
-        console.log(credential);
         // Sign in with credential from the Facebook user.
+        // fetch(`https://graph.facebook.com/me?fields=id,name,picture&access_token=${token}`)
+        //     .then((response)=>{
+        //         response.json()
+        //         .then((response)=>{
+        //             const name = response.name;
+        //             console.log(response);
+        //             return
+        //         })
+        // })
         firebase.auth().signInWithCredential(credential).catch((error) => {
           // Handle Errors here.
           alert(error);
         });
+        await AsyncStorage.setItem('fb_token', token);
   }
       }catch(e){
         alert(e)
