@@ -15,12 +15,10 @@ const DEFAULT_PROFILE: Profile = {
 };
 
 export default class ProfileStore {
-
     @observable _profile: Profile = DEFAULT_PROFILE;
 
     @computed get profile(): Profile { return this._profile; }
     set profile(profile: Profile) { this._profile = profile; }
-
     async init(): Promise<void> {
         // Load Profile
         const {uid} = Firebase.auth.currentUser;
@@ -28,17 +26,27 @@ export default class ProfileStore {
             if (snap.exists) {
                 this.profile = snap.data();
             } else {
+
                 const token = await AsyncStorage.getItem('fb_token');
-                fetch(`https://graph.facebook.com/me?fields=id,name,picture&access_token=${token}`)
+                const id = "";
+                await fetch(`https://graph.facebook.com/me?fields=id,name,picture&access_token=${token}`)
                 .then((response)=>{
                     response.json()
                     .then((response)=>{
                       console.log(response);
                         DEFAULT_PROFILE.name = response.name;
-                        DEFAULT_PROFILE.picture.uri = response.picture.data.url
+                        id = response.id;
+                    })
+                });
+                fetch(`https://graph.facebook.com/${id}/picture?type=large&redirect=false`)
+                .then((response)=>{
+                    response.json()
+                    .then((response)=>{
+                      console.log(response);
+                        DEFAULT_PROFILE.picture.uri = response.data.url;
                         return
                     })
-                })
+                });
                 console.log(DEFAULT_PROFILE);
                 await Firebase.firestore.collection("users").doc(uid).set(DEFAULT_PROFILE);
                 this.profile = DEFAULT_PROFILE;
