@@ -14,9 +14,9 @@ import type {ScreenProps} from "./src/components/Types";
 
 import {Welcome} from "./src/welcome";
 import {Walkthrough} from "./src/walkthrough";
-import {SignUpName, SignUpEmail, SignUpPassword, Login} from "./src/sign-up";
+import {Login} from "./src/sign-up";
 import {
-    Profile, Explore, Share, SharePicture, HomeTab, Comments, Settings, ProfileStore
+    Profile, Explore, Share, SharePicture, HomeTab, Comments, Settings, ProfileStore,Details
 } from "./src/home";
 
 import getTheme from "./native-base-theme/components";
@@ -172,17 +172,11 @@ const HomeNavigator = SwitchNavigator({
     Home: { screen: HomeTabs }
 }, StackNavigatorOptions);
 
-const SignUpNavigator = StackNavigator({
-    SignUp: { screen: SignUpName },
-    SignUpEmail: { screen: SignUpEmail },
-    SignUpPassword: { screen: SignUpPassword }
-}, StackNavigatorOptions);
 
 const AppNavigator = SwitchNavigator({
     Loading: { screen: Loading },
     Welcome: { screen: Welcome },
     Login: { screen: Login },
-    SignUp: { screen: SignUpNavigator },
     Home: { screen: HomeNavigator }
 }, StackNavigatorOptions);
 
