@@ -65,7 +65,7 @@ export default class SharePicture extends React.Component<ScreenParams<Picture>,
                 }
             };
             await Firebase.firestore.collection("feed").doc(this.id).set(post);
-            navigation.pop(1);
+            navigation.pop(2);
             navigation.navigate("Explore");
         } catch (e) {
             const message = serializeException(e);
