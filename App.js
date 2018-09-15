@@ -19,6 +19,8 @@ import {
     Profile, Explore, Share, SharePicture, HomeTab, Comments, Settings, ProfileStore
 } from "./src/home";
 
+import Gallery from "./src/home/share/Gallery";
+import ImageEdit from "./src/home/share/ImageEdit";
 import getTheme from "./native-base-theme/components";
 import variables from "./native-base-theme/variables/commonColor";
 
@@ -153,7 +155,10 @@ const ProfileNavigator = StackNavigator({
 
 const ShareNavigator = StackNavigator({
     Share: { screen: Share },
-    SharePicture: { screen: SharePicture }
+    Gallery: { screen: Gallery },
+    ImageEdit:{ screen: ImageEdit},
+    SharePicture: { screen: SharePicture },
+
 }, StackNavigatorOptions);
 
 const HomeTabs = TabNavigator({
