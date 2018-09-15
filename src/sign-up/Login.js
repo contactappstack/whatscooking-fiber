@@ -1,7 +1,7 @@
 import autobind from "autobind-decorator";
 import * as React from "react";
 import {TextInput} from "react-native";
-
+import { AsyncStorage } from 'react-native';
 import SignUpContainer from "./SignUpContainer";
 import firebase from "firebase";
 import {TextField, Firebase} from "../components";

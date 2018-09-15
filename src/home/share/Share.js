@@ -61,6 +61,7 @@ export default class Share extends React.Component<ScreenProps<>, ShareState> {
         try {
             this.setState({ loading: true });
             const picture = await this.camera.takePictureAsync({ base64: false });
+            console.log(picture)
             this.setState({ loading: false });
             navigation.navigate("SharePicture", picture);
         } catch (e) {
@@ -77,6 +78,13 @@ export default class Share extends React.Component<ScreenProps<>, ShareState> {
         }
     }
 
+    @autobind
+    gallery(){
+      const {navigation} = this.props;
+      console.log("hello")
+      navigation.navigate("Gallery");
+    }
+
     render(): React.Node {
         const {navigation} = this.props;
         const {hasCameraPermission, type, flashMode, loading} = this.state;
@@ -91,26 +99,33 @@ export default class Share extends React.Component<ScreenProps<>, ShareState> {
         }
         return (
             <View style={styles.container}>
-                <NavHeader title="Share" {...{navigation}} />
+                <NavHeader title="Camera" {...{navigation}} />
                 <Camera ref={this.setCamera} style={styles.camera} {...{type, flashMode}}>
                     <View style={styles.cameraBtns}>
-                        <TouchableWithoutFeedback onPress={this.toggleCamera}>
-                            <View>
-                                <Icon name="rotate-ccw" style={styles.rotate} size={25} />
-                            </View>
-                        </TouchableWithoutFeedback>
+
+
                         <TouchableWithoutFeedback onPress={this.toggleFlash}>
                             <View>
                                 <FlashIcon on={flashMode === Camera.Constants.FlashMode.on} />
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
+                    <View style={styles.footer}>
+                      <TouchableWithoutFeedback onPress={this.toggleCamera}>
+                          <View>
+                              <Icon name="rotate-ccw" style={styles.rotate} size={25} />
+                          </View>
+                      </TouchableWithoutFeedback>
+                        <TouchableOpacity onPress={this.snap}>
+                            <View style={styles.btn} />
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={this.gallery}>
+                            <View >
+                              <Icon name="image" style= {styles.gallery}size={30} />
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                 </Camera>
-                <View style={styles.footer}>
-                    <TouchableOpacity onPress={this.snap}>
-                        <View style={styles.btn} />
-                    </TouchableOpacity>
-                </View>
                 <Modal transparent visible={loading} onRequestClose={this.toggle}>
                     <View style={styles.modal}>
                         <SpinningIndicator />
@@ -122,7 +137,7 @@ export default class Share extends React.Component<ScreenProps<>, ShareState> {
 }
 
 const {width, height} = Dimensions.get("window");
-const ratio = width / height;
+const ratio = 0.9*height;
 const styles = StyleSheet.create({
     container: {
         flex: 1
@@ -134,29 +149,33 @@ const styles = StyleSheet.create({
     },
     camera: {
         width,
-        height: width
+        height: ratio
     },
     cameraBtns: {
         position: "absolute",
-        bottom: 0,
+        top: 0,
         width,
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "flex-end",
         padding: Theme.spacing.base
     },
     rotate: {
         backgroundColor: "transparent",
-        color: "white"
+        color: "white",
+        paddingTop:10
     },
     footer: {
-        flexGrow: 1,
-        justifyContent: "center",
-        alignItems: "center"
+      position: "absolute",
+      bottom: 80,
+      width,
+      flexDirection: "row",
+      justifyContent: "space-between",
+      padding: Theme.spacing.base
     },
     btn: {
-        height: ratio < 0.75 ? 100 : 60,
-        width: ratio < 0.75 ? 100 : 60,
-        borderRadius: ratio < 0.75 ? 50 : 30,
+        height: ratio < 0.75 ? 120 : 60,
+        width: ratio < 0.75 ? 120 : 60,
+        borderRadius: ratio < 0.75 ? 60 : 30,
         borderWidth: ratio < 0.75 ? 20 : 10,
         borderColor: Theme.palette.lightGray
     },
@@ -165,5 +184,43 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(0, 0, 0, 0.5)",
         justifyContent: "center",
         alignItems: "center"
+    },
+    gallery:{
+      backgroundColor: "transparent",
+      color: "white",
+      paddingTop:10
     }
 });
+
+
+
+// <View style={styles.container}>
+//     <NavHeader title="Share" {...{navigation}} />
+//     <Camera ref={this.setCamera} style={styles.camera} {...{type, flashMode}}>
+//         <View style={styles.cameraBtns}>
+//             <TouchableWithoutFeedback onPress={this.toggleCamera}>
+//                 <View>
+//                     <Icon name="rotate-ccw" style={styles.rotate} size={25} />
+//                 </View>
+//             </TouchableWithoutFeedback>
+//             <TouchableWithoutFeedback onPress={this.toggleFlash}>
+//                 <View>
+//                     <FlashIcon on={flashMode === Camera.Constants.FlashMode.on} />
+//                 </View>
+//             </TouchableWithoutFeedback>
+//         </View>
+//     </Camera>
+//     <View style={styles.footer}>
+//         <TouchableOpacity onPress={this.snap}>
+//             <View style={styles.btn} />
+//         </TouchableOpacity>
+//         <TouchableOpacity onPress={this.gallery}>
+//             <View style={styles.btn} />
+//         </TouchableOpacity>
+//     </View>
+//     <Modal transparent visible={loading} onRequestClose={this.toggle}>
+//         <View style={styles.modal}>
+//             <SpinningIndicator />
+//         </View>
+//     </Modal>
+// </View>
