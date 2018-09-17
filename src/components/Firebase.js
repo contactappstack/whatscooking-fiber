@@ -3,12 +3,12 @@ import * as firebase from "firebase";
 import "firebase/firestore";
 
 const config = {
-    apiKey: "AIzaSyD-LiSTZojaA1w3Wdciwf7HI8AP6GE7zLA",
-    authDomain: "react-native-fiber.firebaseapp.com",
-    databaseURL: "https://react-native-fiber.firebaseio.com",
-    projectId: "react-native-fiber",
-    storageBucket: "react-native-fiber.appspot.com",
-    messagingSenderId: "387191574162"
+  apiKey: "AIzaSyDL5_Y9aMrobpfOQ5ML4afUo5IneeXmZF0",
+  authDomain: "whatscooking-b80e9.firebaseapp.com",
+  databaseURL: "https://whatscooking-b80e9.firebaseio.com",
+  projectId: "whatscooking-b80e9",
+  storageBucket: "whatscooking-b80e9.appspot.com",
+  messagingSenderId: "41743103985"
 };
 
 export default class Firebase {

@@ -1,68 +1,51 @@
-// @flow
 import autobind from "autobind-decorator";
 import * as React from "react";
 import {TextInput} from "react-native";
-
+import { AsyncStorage } from 'react-native';
 import SignUpContainer from "./SignUpContainer";
-
+import firebase from "firebase";
 import {TextField, Firebase} from "../components";
 import type {NavigationProps} from "../components/Types";
 
 type LoginState = {
-    email: string,
-    password: string,
     loading: boolean
 };
 
 export default class Login extends React.Component<NavigationProps<*>, LoginState> {
 
     state: LoginState = {
-        email: "",
-        password: "",
         loading: false
     };
 
-    password: TextInput;
-
-    @autobind
-    setEmail(email: string) {
-        this.setState({ email });
-    }
-
-    @autobind
-    setPassword(password: string) {
-        this.setState({ password });
-    }
-
-    @autobind
-    setPasswordRef(input: TextInput) {
-        this.password = input;
-    }
-
-    @autobind
-    goToPassword() {
-        this.password.focus();
-    }
-
     @autobind
     async login(): Promise<void> {
-        const {email, password} = this.state;
-        try {
-            if (email === "") {
-                throw new Error("Please provide an email address.");
-            }
-            if (password === "") {
-                throw new Error("Please provide a password.");
-            }
-            this.setState({ loading: true });
-            await Firebase.auth.signInWithEmailAndPassword(email, password);
-        } catch (e) {
-            // eslint-disable-next-line no-alert
-            alert(e);
-            this.setState({ loading: false });
-        }
+      try{
+        let { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('602498550137033', {
+            permissions: ['public_profile']
+        });
+        if (type === 'success') {
+        // Build Firebase credential with the Facebook access token.
+        const credential = firebase.auth.FacebookAuthProvider.credential(token);
+        // Sign in with credential from the Facebook user.
+        // fetch(`https://graph.facebook.com/me?fields=id,name,picture&access_token=${token}`)
+        //     .then((response)=>{
+        //         response.json()
+        //         .then((response)=>{
+        //             const name = response.name;
+        //             console.log(response);
+        //             return
+        //         })
+        // })
+        firebase.auth().signInWithCredential(credential).catch((error) => {
+          // Handle Errors here.
+          alert(error);
+        });
+        await AsyncStorage.setItem('fb_token', token);
+  }
+      }catch(e){
+        alert(e)
+      }
     }
-
     render(): React.Node {
         const {navigation} = this.props;
         const {loading} = this.state;
@@ -70,32 +53,11 @@ export default class Login extends React.Component<NavigationProps<*>, LoginStat
             <SignUpContainer
                 title="Login"
                 subtitle="Get Started"
-                nextLabel="Login"
+                nextLabel="Login with Facebook"
                 next={this.login}
                 first
                 {...{ navigation, loading }}
             >
-                <TextField
-                    placeholder="Email"
-                    keyboardType="email-address"
-                    contrast
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    returnKeyType="next"
-                    onSubmitEditing={this.goToPassword}
-                    onChangeText={this.setEmail}
-                />
-                <TextField
-                    secureTextEntry
-                    placeholder="Password"
-                    contrast
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    returnKeyType="go"
-                    textInputRef={this.setPasswordRef}
-                    onSubmitEditing={this.login}
-                    onChangeText={this.setPassword}
-                />
             </SignUpContainer>
         );
     }

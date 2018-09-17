@@ -14,11 +14,13 @@ import type {ScreenProps} from "./src/components/Types";
 
 import {Welcome} from "./src/welcome";
 import {Walkthrough} from "./src/walkthrough";
-import {SignUpName, SignUpEmail, SignUpPassword, Login} from "./src/sign-up";
+import {Login} from "./src/sign-up";
 import {
-    Profile, Explore, Share, SharePicture, HomeTab, Comments, Settings, ProfileStore
+    Profile, Explore, Share, SharePicture, HomeTab, Comments, Settings, ProfileStore,Details
 } from "./src/home";
 
+import Gallery from "./src/home/share/Gallery";
+import ImageEdit from "./src/home/share/ImageEdit";
 import getTheme from "./native-base-theme/components";
 import variables from "./native-base-theme/variables/commonColor";
 
@@ -142,7 +144,7 @@ const StackNavigatorOptions = {
 
 const ExploreNavigator = StackNavigator({
     Explore: { screen: Explore },
-    Comments: { screen: Comments }
+    Comments: { screen: Comments },
 }, StackNavigatorOptions);
 
 const ProfileNavigator = StackNavigator({
@@ -153,7 +155,10 @@ const ProfileNavigator = StackNavigator({
 
 const ShareNavigator = StackNavigator({
     Share: { screen: Share },
-    SharePicture: { screen: SharePicture }
+    Gallery: { screen: Gallery },
+    ImageEdit:{ screen: ImageEdit},
+    SharePicture: { screen: SharePicture },
+
 }, StackNavigatorOptions);
 
 const HomeTabs = TabNavigator({
@@ -172,17 +177,11 @@ const HomeNavigator = SwitchNavigator({
     Home: { screen: HomeTabs }
 }, StackNavigatorOptions);
 
-const SignUpNavigator = StackNavigator({
-    SignUp: { screen: SignUpName },
-    SignUpEmail: { screen: SignUpEmail },
-    SignUpPassword: { screen: SignUpPassword }
-}, StackNavigatorOptions);
 
 const AppNavigator = SwitchNavigator({
     Loading: { screen: Loading },
     Welcome: { screen: Welcome },
     Login: { screen: Login },
-    SignUp: { screen: SignUpNavigator },
     Home: { screen: HomeNavigator }
 }, StackNavigatorOptions);
 

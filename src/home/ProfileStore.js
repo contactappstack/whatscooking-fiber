@@ -1,6 +1,6 @@
 // @flow
 import {observable, computed} from "mobx";
-
+import { AsyncStorage } from 'react-native';
 import {Firebase} from "../components";
 import type {Profile} from "../components/Model";
 
@@ -28,8 +28,19 @@ export default class ProfileStore {
             if (snap.exists) {
                 this.profile = snap.data();
             } else {
-                await Firebase.firestore.collection("users").doc(uid).set(DEFAULT_PROFILE);
-                this.profile = DEFAULT_PROFILE;
+                const token = await AsyncStorage.getItem('fb_token');
+                fetch(`https://graph.facebook.com/me?fields=id,name,picture.width(200).height(200)&access_token=${token}`)
+                .then((response)=>{
+                    response.json()
+                    .then((response)=>{
+                      console.log(response);
+                        DEFAULT_PROFILE.name = response.name;
+                        DEFAULT_PROFILE.picture.uri = response.picture.data.url;
+                        console.log(DEFAULT_PROFILE);
+                        Firebase.firestore.collection("users").doc(uid).set(DEFAULT_PROFILE);
+                        this.profile = DEFAULT_PROFILE;
+                    })
+                })
             }
         });
     }
