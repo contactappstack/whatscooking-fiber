@@ -8,7 +8,7 @@ import {Content} from "native-base";
 import {
     NavHeader, Button, Theme, RefreshIndicator, Firebase, ImageUpload, serializeException, Text
 } from "../../components";
-
+import { NavigationActions } from 'react-navigation';
 import type {ScreenParams} from "../../components/Types";
 import type {Post} from "../../components/Model";
 import type {Picture} from "../../components/ImageUpload";
@@ -43,6 +43,18 @@ export default class SharePicture extends React.Component<ScreenParams<Picture>,
             Alert.alert(e);
         }
     }
+    // @autobind
+    // navigateToMain(){
+    //   const {navigation} = this.props;
+    //   const resetAction = NavigationActions.reset({
+    //   index: 1,
+    //   actions: [
+    //   NavigationActions.navigate({ routeName: 'Home' }),
+    //   NavigationActions.navigate({ routeName: 'Home' }),
+    //   NavigationActions.navigate({ routeName: 'Explore' }),]
+    //   });
+    //   this.props.navigation.dispatch(resetAction);
+    // }
 
     @autobind
     async onPress(): Promise<void> {
@@ -88,7 +100,7 @@ export default class SharePicture extends React.Component<ScreenParams<Picture>,
             return (
                 <View style={styles.loading}>
                     <RefreshIndicator />
-                    <Text style={styles.saving}>Saving...</Text>
+                    <Text style={styles.saving}>Uploading....</Text>
                 </View>
             );
         }

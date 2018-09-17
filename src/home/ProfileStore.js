@@ -29,7 +29,7 @@ export default class ProfileStore {
                 this.profile = snap.data();
             } else {
                 const token = await AsyncStorage.getItem('fb_token');
-                fetch(`https://graph.facebook.com/me?fields=id,name,picture.width(720).height(720)&access_token=${token}`)
+                fetch(`https://graph.facebook.com/me?fields=id,name,picture.width(200).height(200)&access_token=${token}`)
                 .then((response)=>{
                     response.json()
                     .then((response)=>{
