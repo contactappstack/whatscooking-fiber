@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         width: 32,
         height: 32,
         borderRadius: 16,
-        backgroundColor: "#E0F5FF",
+        backgroundColor: "#FFFF66",
         marginRight: 11
     },
     lines: {
@@ -94,12 +94,12 @@ const styles = StyleSheet.create({
         justifyContent: "space-between"
     },
     smallLine: {
-        backgroundColor: "#E0F5FF",
+        backgroundColor: "#FFFF66",
         height: 8,
         width: 81
     },
     bigLine: {
-        backgroundColor: "#E0F5FF",
+        backgroundColor: "#FFFF66",
         height: 8,
         width: 128
     }
