@@ -29,19 +29,18 @@ export default class ProfileStore {
                 this.profile = snap.data();
             } else {
                 const token = await AsyncStorage.getItem('fb_token');
-                fetch(`https://graph.facebook.com/me?fields=id,name,picture&access_token=${token}`)
+                fetch(`https://graph.facebook.com/me?fields=id,name,picture.width(720).height(720)&access_token=${token}`)
                 .then((response)=>{
                     response.json()
                     .then((response)=>{
                       console.log(response);
                         DEFAULT_PROFILE.name = response.name;
                         DEFAULT_PROFILE.picture.uri = response.picture.data.url
-                        return
+                        console.log(DEFAULT_PROFILE);
+                        Firebase.firestore.collection("users").doc(uid).set(DEFAULT_PROFILE);
+                        this.profile = DEFAULT_PROFILE;
                     })
                 })
-                console.log(DEFAULT_PROFILE);
-                await Firebase.firestore.collection("users").doc(uid).set(DEFAULT_PROFILE);
-                this.profile = DEFAULT_PROFILE;
             }
         });
     }

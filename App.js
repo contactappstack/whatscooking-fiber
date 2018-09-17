@@ -81,7 +81,7 @@ class Loading extends React.Component<ScreenProps<>> {
                 userFeedStore.init(userFeedQuery);
                 navigation.navigate("Home");
             } else {
-                navigation.navigate("Welcome");
+                navigation.navigate("Walkthrough");
             }
         });
     }
@@ -119,7 +119,7 @@ export default class App extends React.Component<{}> {
     componentDidMount() {
         StatusBar.setBarStyle("dark-content");
         if (Platform.OS === "android") {
-            StatusBar.setBackgroundColor("white");
+            StatusBar.setBackgroundColor("black");
         }
     }
 
@@ -173,13 +173,13 @@ const HomeTabs = TabNavigator({
 });
 
 const HomeNavigator = SwitchNavigator({
-    Walkthrough: { screen: Walkthrough },
     Home: { screen: HomeTabs }
 }, StackNavigatorOptions);
 
 
 const AppNavigator = SwitchNavigator({
     Loading: { screen: Loading },
+    Walkthrough: { screen: Walkthrough },
     Welcome: { screen: Welcome },
     Login: { screen: Login },
     Home: { screen: HomeNavigator }
