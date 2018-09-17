@@ -2,7 +2,7 @@
 import autobind from "autobind-decorator";
 import * as React from "react";
 import moment from "moment";
-import {StyleSheet, View, Animated, SafeAreaView, TouchableWithoutFeedback, Platform} from "react-native";
+import {StyleSheet, ScrollView, Animated,View, SafeAreaView, TouchableWithoutFeedback, Platform, RefreshControl} from "react-native";
 import {inject, observer} from "mobx-react/native";
 
 import ProfileStore from "../ProfileStore";
@@ -14,7 +14,8 @@ const AnimatedText = Animated.createAnimatedComponent(Text);
 const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
 
 type ExploreState = {
-    scrollAnimation: Animated.Value
+    scrollAnimation: Animated.Value,
+    refreshing : boolean
 };
 
 type InjectedProps = {
@@ -26,8 +27,16 @@ type InjectedProps = {
 export default class Explore extends React.Component<ScreenProps<> & InjectedProps, ExploreState> {
 
     state = {
-        scrollAnimation: new Animated.Value(0)
+        scrollAnimation: new Animated.Value(0),
+        refreshing : false
     };
+
+    _onRefresh = () => {
+    this.setState({refreshing: true});
+    this.props.feedStore.checkForNewEntriesInFeed().then(() => {
+      this.setState({refreshing: false});
+    });
+  }
 
     @autobind
     profile() {
@@ -36,6 +45,10 @@ export default class Explore extends React.Component<ScreenProps<> & InjectedPro
 
     componentDidMount() {
         this.props.feedStore.checkForNewEntriesInFeed();
+    }
+
+    update(){
+      this.forceUpdate();
     }
 
     render(): React.Node {
@@ -73,13 +86,20 @@ export default class Explore extends React.Component<ScreenProps<> & InjectedPro
             extrapolate: "clamp"
         });
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}
+              refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this._onRefresh}
+              />
+            }>
                 <AnimatedSafeAreaView style={[styles.header, { shadowOpacity }]}>
                     <Animated.View style={[styles.innerHeader, { height }]}>
                         <View>
                             <AnimatedText
                                 type="large"
                                 style={[styles.newPosts, { opacity, transform: [{ translateY }] }]}
+                                onClick={this.update}
                             >
                             New posts
                             </AnimatedText>
@@ -112,7 +132,7 @@ export default class Explore extends React.Component<ScreenProps<> & InjectedPro
                     }])}
                     {...{navigation}}
                 />
-            </View>
+            </ScrollView>
         );
     }
 }

@@ -35,7 +35,7 @@ export default class ProfileStore {
                     .then((response)=>{
                       console.log(response);
                         DEFAULT_PROFILE.name = response.name;
-                        DEFAULT_PROFILE.picture.uri = response.picture.data.url;
+                        DEFAULT_PROFILE.picture.uri = response.picture.data.url
                         console.log(DEFAULT_PROFILE);
                         Firebase.firestore.collection("users").doc(uid).set(DEFAULT_PROFILE);
                         this.profile = DEFAULT_PROFILE;

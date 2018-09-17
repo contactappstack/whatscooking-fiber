@@ -1,7 +1,7 @@
 // @flow
 import autobind from "autobind-decorator";
 import * as React from "react";
-import {View, StyleSheet, Dimensions, TouchableOpacity, Image} from "react-native";
+import {View, StyleSheet, Dimensions, TouchableOpacity, Image,ScrollView,RefreshControl} from "react-native";
 import {Feather as Icon} from "@expo/vector-icons";
 import {inject, observer} from "mobx-react/native";
 import {Constants, LinearGradient} from "expo";
@@ -12,14 +12,21 @@ import {Text, Avatar, Theme, Images, Feed, FeedStore} from "../../components";
 import type {FeedEntry} from "../../components/Model";
 import type {ScreenProps} from "../../components/Types";
 
+
+type InjectedState ={
+  refreshing : boolean
+}
 type InjectedProps = {
     profileStore: ProfileStore,
     userFeedStore: FeedStore
 };
 
 @inject("profileStore", "userFeedStore") @observer
-export default class ProfileComp extends React.Component<ScreenProps<> & InjectedProps> {
+export default class ProfileComp extends React.Component<ScreenProps<> & InjectedProps & InjectedState> {
 
+    state={
+      refreshing : false
+    };
     componentDidMount() {
         this.props.userFeedStore.checkForNewEntriesInFeed();
     }
@@ -35,6 +42,13 @@ export default class ProfileComp extends React.Component<ScreenProps<> & Injecte
         this.props.userFeedStore.loadFeed();
     }
 
+    _onRefresh = () => {
+    this.setState({refreshing: true});
+    this.props.userFeedStore.checkForNewEntriesInFeed().then(() => {
+      this.setState({refreshing: false});
+    });
+  }
+
     @autobind
     // eslint-disable-next-line class-methods-use-this
     keyExtractor(item: FeedEntry): string {
@@ -45,7 +59,13 @@ export default class ProfileComp extends React.Component<ScreenProps<> & Injecte
         const {navigation, userFeedStore, profileStore} = this.props;
         const {profile} = profileStore;
         return (
-            <View style={styles.container}>
+          <ScrollView style={styles.container}
+            refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+            />
+          }>
                 <LinearGradient
                     colors={["#5cc0f1", "#d6ebf4", "white"]}
                     style={styles.gradient}
@@ -70,7 +90,7 @@ export default class ProfileComp extends React.Component<ScreenProps<> & Injecte
                     store={userFeedStore}
                     {...{navigation}}
                 />
-            </View>
+            </ScrollView>
         );
     }
 }
