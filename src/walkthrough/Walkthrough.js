@@ -100,7 +100,7 @@ const slides = [
     },
     {
         title: "Share",
-        description: "Send your best selfies and show friends what you’re up to.",
+        description: "Send your best selfies and show friends what you’re cooking up.",
         icon: <Share ref={ref => (ref ? share = ref : undefined)} />,
         show: () => share.show(),
         hide: () => share.hide()
