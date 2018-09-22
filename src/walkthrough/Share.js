@@ -53,8 +53,8 @@ export default class Share extends React.Component<NoProps, ShareState> {
     }
 }
 
-const backgroundColor = "#E0F5FF";
-const shadowColor = "#0091FF";
+const backgroundColor = "#FFFFB3";
+const shadowColor = "#f27842";
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row"

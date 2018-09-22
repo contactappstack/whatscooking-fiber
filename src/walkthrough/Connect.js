@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         borderRadius: Platform.OS === "ios" ? 4 : undefined,
         width: 54,
         height: 94,
-        backgroundColor: "#E0F5FF",
+        backgroundColor: "#FFFFB3",
         borderColor: "white",
         borderTopWidth: 12.5,
         borderBottomWidth: 12.5,
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         borderRadius: Platform.OS === "ios" ? 6 : undefined,
         width: 151,
         height: 108,
-        backgroundColor: "#E0F5FF",
+        backgroundColor: "#FFFFB3",
         borderColor: "white",
         borderTopWidth: 6,
         borderBottomWidth: 25,
@@ -105,12 +105,12 @@ const styles = StyleSheet.create({
         borderRightWidth: 6
     },
     foot: {
-        backgroundColor: "#CCE9FF",
+        backgroundColor: "#FFFFB3",
         width: 40,
         height: 16
     },
     base: {
-        backgroundColor: "#F5FBFF",
+        backgroundColor: "#F9F9EF",
         width: 82,
         height: 2
     }

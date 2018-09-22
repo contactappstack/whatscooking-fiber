@@ -5,6 +5,7 @@ import {StyleSheet, Dimensions, Linking, TouchableOpacity} from "react-native";
 import {Text, Button, Container, Logo, Theme, AnimatedView, Firebase, serializeException} from "../components";
 import type {ScreenProps} from "../components/Types";
 
+
 export default class Welcome extends React.Component<ScreenProps<>> {
 
     @autobind
@@ -17,7 +18,7 @@ export default class Welcome extends React.Component<ScreenProps<>> {
             <Container gutter={2} style={styles.root}>
                 <Logo />
                 <AnimatedView style={styles.container}>
-                    <Text type="header1" style={styles.header}>Fiber</Text>
+                    <Text type="header1" style={styles.header}>Alinea</Text>
                 </AnimatedView>
                 <AnimatedView style={styles.container} delay={600} duration={300}>
                     <Button label="Get Started" onPress={this.login} full primary />

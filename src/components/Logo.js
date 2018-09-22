@@ -42,15 +42,15 @@ const styles = StyleSheet.create({
         height: n
     },
     a: {
-        backgroundColor: "#004DFF",
+        backgroundColor: "#ff4d4d",
         transform: [{ translateY: translation }, { rotate: "45deg" }]
     },
     b: {
-        backgroundColor: "#00AAFF",
+        backgroundColor: "#f27842",
         transform: [{ translateX: translation }, { rotate: "45deg" }]
     },
     c: {
-        backgroundColor: "#A0EEFF",
+        backgroundColor: "#FFFFB3",
         transform: [{ translateY: -translation }, { rotate: "45deg" }]
     }
 });
