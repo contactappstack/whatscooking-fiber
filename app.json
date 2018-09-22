@@ -7,7 +7,7 @@
         "orientation": "portrait",
         "privacy": "public",
         "icon": "./app.png",
-        "primaryColor": "#00AAFF",
+        "primaryColor": "#f27842",
         "splash": {
             "image": "./splash.png",
             "resizeMode": "cover",

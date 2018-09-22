@@ -47,7 +47,7 @@ export default class ProfileComp extends React.Component<ScreenProps<> & Injecte
         return (
             <View style={styles.container}>
                 <LinearGradient
-                    colors={["#5cc0f1", "#d6ebf4", "white"]}
+                    colors={["#f78859", "#FFFF66", "white"]}
                     style={styles.gradient}
                 />
                 <Feed
