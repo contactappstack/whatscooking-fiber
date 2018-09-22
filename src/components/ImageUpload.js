@@ -1,6 +1,6 @@
 // @flow
 import {ImageManipulator} from "expo";
-
+import reduceImageAsync from './shrinkImageAsync';
 import Firebase from "./Firebase";
 
 export type Picture = {
@@ -19,8 +19,10 @@ export default class ImageUpload {
     }
 
     static async preview({ uri }: Picture): Promise<string> {
-        const result = await manipulate(uri, [{ resize: { width: 10, height: 10 }}], { base64: true });
-        return `data:image/jpeg;base64,${result.base64 || ""}`;
+        const result = await reduceImageAsync(uri)//manipulate(uri, [{ resize: { width: 10, height: 10 }}], { base64: true });
+        console.log(result);
+        //return `data:image/jpeg;base64,${result.base64 || ""}`;
+        return result.uri;
     }
 
     static async upload(picture: Picture): Promise<string> {

@@ -36,7 +36,7 @@ export default class ProfileStore {
                       console.log(response);
                         DEFAULT_PROFILE.name = response.name;
                         DEFAULT_PROFILE.picture.uri = response.picture.data.url
-                        console.log(DEFAULT_PROFILE);
+                        //console.log(DEFAULT_PROFILE);
                         Firebase.firestore.collection("users").doc(uid).set(DEFAULT_PROFILE);
                         this.profile = DEFAULT_PROFILE;
                     })
@@ -45,3 +45,6 @@ export default class ProfileStore {
         });
     }
 }
+//  Hide profile screen when no internet connection....
+//  change default image......
+//

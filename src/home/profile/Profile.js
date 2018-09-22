@@ -5,7 +5,7 @@ import {View, StyleSheet, Dimensions, TouchableOpacity, Image,ScrollView,Refresh
 import {Feather as Icon} from "@expo/vector-icons";
 import {inject, observer} from "mobx-react/native";
 import {Constants, LinearGradient} from "expo";
-
+import { NetInfo } from 'react-native';
 import ProfileStore from "../ProfileStore";
 
 import {Text, Avatar, Theme, Images, Feed, FeedStore} from "../../components";
@@ -25,10 +25,20 @@ type InjectedProps = {
 export default class ProfileComp extends React.Component<ScreenProps<> & InjectedProps & InjectedState> {
 
     state={
-      refreshing : false
+      refreshing : false,
+      net:false
     };
     componentDidMount() {
-        this.props.userFeedStore.checkForNewEntriesInFeed();
+        NetInfo.isConnected.fetch().then(isConnected => {
+           if(isConnected)
+           {
+                this.setState({net:false})
+                this.props.userFeedStore.checkForNewEntriesInFeed();
+           }else{
+                this.setState({net:false})
+           }
+        })
+        
     }
 
     @autobind
@@ -59,7 +69,12 @@ export default class ProfileComp extends React.Component<ScreenProps<> & Injecte
         const {navigation, userFeedStore, profileStore} = this.props;
         const {profile} = profileStore;
         return (
-          <ScrollView style={styles.container}
+
+            <View style={{flex:1}}>
+               {!this.state.net ?
+                 (<View><Text>Check Your Net Connectivity</Text></View>)
+               :
+                 (<ScrollView style={styles.container}
             refreshControl={
             <RefreshControl
               refreshing={this.state.refreshing}
@@ -90,7 +105,11 @@ export default class ProfileComp extends React.Component<ScreenProps<> & Injecte
                     store={userFeedStore}
                     {...{navigation}}
                 />
-            </ScrollView>
+            </ScrollView>)
+                }
+              </View>
+
+          
         );
     }
 }
