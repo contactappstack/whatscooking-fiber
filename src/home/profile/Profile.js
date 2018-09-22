@@ -38,7 +38,7 @@ export default class ProfileComp extends React.Component<ScreenProps<> & Injecte
                 this.setState({net:false})
            }
         })
-        
+
     }
 
     @autobind
@@ -71,7 +71,7 @@ export default class ProfileComp extends React.Component<ScreenProps<> & Injecte
         return (
 
             <View style={{flex:1}}>
-               {!this.state.net ?
+               {this.state.net ?
                  (<View><Text>Check Your Net Connectivity</Text></View>)
                :
                  (<ScrollView style={styles.container}
@@ -109,7 +109,7 @@ export default class ProfileComp extends React.Component<ScreenProps<> & Injecte
                 }
               </View>
 
-          
+
         );
     }
 }
