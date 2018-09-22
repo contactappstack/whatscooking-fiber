@@ -25,7 +25,7 @@ export default class Walkthrough extends React.Component<ScreenProps<>, Walkthro
     componentDidMount() {
         StatusBar.setBarStyle("light-content");
         if (Platform.OS === "android") {
-            StatusBar.setBackgroundColor("#0059FF");
+            StatusBar.setBackgroundColor("#FF0213");
         }
     }
 
@@ -36,7 +36,7 @@ export default class Walkthrough extends React.Component<ScreenProps<>, Walkthro
             return;
         }
         this.setState({ disabled: true });
-        StatusBar.setBarStyle("dark-content");
+        StatusBar.setBarStyle("light-content");
         if (Platform.OS === "android") {
             StatusBar.setBackgroundColor("white");
         }
@@ -100,7 +100,7 @@ const slides = [
     },
     {
         title: "Share",
-        description: "Send your best selfies and show friends what you’re up to.",
+        description: "Send your best selfies and show friends what you’re cooking up.",
         icon: <Share ref={ref => (ref ? share = ref : undefined)} />,
         show: () => share.show(),
         hide: () => share.hide()

@@ -31,9 +31,9 @@ export default class EnableCameraRollPermission extends React.Component<Props, S
         }
         return (
             <View style={styles.container}>
-                <Text type="header3" gutterBottom style={styles.text}>Take Pictures with Fiber</Text>
+                <Text type="header3" gutterBottom style={styles.text}>Take Pictures with Alinea</Text>
                 <Text gutterBottom style={styles.text}>
-                Allow access to your camera roll to start taking photos with Fiber.
+                Allow access to your camera roll to start taking photos with Alinea.
                 </Text>
                 {
                     canOpen === true && (

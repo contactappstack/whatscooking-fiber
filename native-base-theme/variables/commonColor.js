@@ -153,16 +153,16 @@ export default {
     // FooterTab
     tabBarTextColor: "white",
     tabBarTextSize: (platform === "ios") ? 14 : 11,
-    activeTab: (platform === "ios") ? "#007aff" : "#fff",
-    sTabBarActiveTextColor: "#007aff",
+    activeTab: (platform === "ios") ? "#f27842" : "#fff",
+    sTabBarActiveTextColor: "#f27842",
     tabBarActiveTextColor: "#fff",
-    tabActiveBgColor: (platform === "ios") ? "#1569f4" : undefined,
+    tabActiveBgColor: (platform === "ios") ? "#FF0213" : undefined,
 
     // Tab
     tabDefaultBg: "white",
-    topTabBarTextColor: "#b3c7f9",
+    topTabBarTextColor: "#FFFF66",
     topTabBarActiveTextColor: "#fff",
-    topTabActiveBgColor: (platform === "ios") ? "#1569f4" : undefined,
+    topTabActiveBgColor: (platform === "ios") ? "#FF0213" : undefined,
     topTabBarBorderColor: "#fff",
     get topTabBarActiveBorderColor(): string { return this.brandInfo; },
 

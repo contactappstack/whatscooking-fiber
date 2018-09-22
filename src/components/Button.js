@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     base: {
     },
     primary: {
-        shadowColor: "rgba(0, 170, 255, 0.29)",
+        shadowColor: "#FF0213",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 1,
         shadowRadius: 7
