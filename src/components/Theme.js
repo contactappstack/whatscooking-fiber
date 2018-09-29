@@ -46,10 +46,10 @@ type Theme = {
 
 const theme: Theme = {
     palette: {
-        primary: "#00AAFF",
-        info: "#00A699",
+        primary: "#f27842",
+        info: "#f2551d",
         secondary: "#f7555c",
-        success: "#5cb85c",
+        success: "#f27842",
         danger: "#d93900",
         warning: "#f0ad4e",
         sidebar: "#484848",

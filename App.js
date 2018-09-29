@@ -173,6 +173,7 @@ const HomeTabs = TabNavigator({
 });
 
 const HomeNavigator = SwitchNavigator({
+    //Walkthrough: { screen: Walkthrough },
     Home: { screen: HomeTabs }
 }, StackNavigatorOptions);
 
