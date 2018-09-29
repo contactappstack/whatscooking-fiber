@@ -26,24 +26,14 @@ export default class Login extends React.Component<NavigationProps<*>, LoginStat
         if (type === 'success') {
         // Build Firebase credential with the Facebook access token.
         const credential = firebase.auth.FacebookAuthProvider.credential(token);
-        // Sign in with credential from the Facebook user.
-        // fetch(`https://graph.facebook.com/me?fields=id,name,picture&access_token=${token}`)
-        //     .then((response)=>{
-        //         response.json()
-        //         .then((response)=>{
-        //             const name = response.name;
-        //             console.log(response);
-        //             return
-        //         })
-        // })
         firebase.auth().signInWithCredential(credential).catch((error) => {
           // Handle Errors here.
-          alert(error);
+          alert("Enable to Signin !");
         });
         await AsyncStorage.setItem('fb_token', token);
   }
       }catch(e){
-        alert(e)
+        alert("Something went wrong! check your internet connectivity!")
       }
     }
     render(): React.Node {

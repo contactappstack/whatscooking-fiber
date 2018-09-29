@@ -33,4 +33,3 @@ export default class ImageUpload {
         return snapshot.downloadURL;
     }
 }
-
