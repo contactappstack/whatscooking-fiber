@@ -25,18 +25,25 @@ type InjectedProps = {
 
 @inject("feedStore", "profileStore") @observer
 export default class Explore extends React.Component<ScreenProps<> & InjectedProps, ExploreState> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      scrollAnimation: new Animated.Value(0),
+      refreshing: false
+  };
+}
+    // state = {
+    //     scrollAnimation: new Animated.Value(0),
+    //     refreshing : false
+    // };
 
-    state = {
-        scrollAnimation: new Animated.Value(0),
-        refreshing : false
-    };
-
-    _onRefresh = () => {
-    this.setState({refreshing: true});
-    this.props.feedStore.checkForNewEntriesInFeed().then(() => {
-      this.setState({refreshing: false});
-    });
-  }
+  //   _onRefresh = () => {
+  //   this.setState({refreshing: true});
+  //   this.props.feedStore.checkForNewEntriesInFeed().then(() => {
+  //     this.setState({refreshing: false});
+  //     console.log("Hello")
+  //   });
+  // }
 
     @autobind
     profile() {
@@ -85,14 +92,9 @@ export default class Explore extends React.Component<ScreenProps<> & InjectedPro
             outputRange: [0, 0.25],
             extrapolate: "clamp"
         });
+
         return (
-            <ScrollView style={styles.container}
-              refreshControl={
-              <RefreshControl
-                refreshing={this.state.refreshing}
-                onRefresh={this._onRefresh}
-              />
-            }>
+              <View style={styles.container}>
                 <AnimatedSafeAreaView style={[styles.header, { shadowOpacity }]}>
                     <Animated.View style={[styles.innerHeader, { height }]}>
                         <View>
@@ -121,7 +123,9 @@ export default class Explore extends React.Component<ScreenProps<> & InjectedPro
                         }
                     </Animated.View>
                 </AnimatedSafeAreaView>
+
                 <Feed
+
                     store={feedStore}
                     onScroll={Animated.event([{
                         nativeEvent: {
@@ -131,11 +135,21 @@ export default class Explore extends React.Component<ScreenProps<> & InjectedPro
                         }
                     }])}
                     {...{navigation}}
+
                 />
-            </ScrollView>
+
+                </View>
         );
     }
 }
+// <ScrollView
+//   enabled= {true}
+//   refreshControl={
+  // <RefreshControl
+  //   refreshing={this.state.refreshing}
+  //   onRefresh={this._onRefresh}
+  // />
+// }>                  </ScrollView>
 
 const styles = StyleSheet.create({
     container: {

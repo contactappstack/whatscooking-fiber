@@ -1,8 +1,8 @@
 // @flow
 import autobind from "autobind-decorator";
 import * as React from "react";
-import {StyleSheet, View, FlatList, SafeAreaView} from "react-native";
-import {observer} from "mobx-react/native";
+import {StyleSheet, View, FlatList, SafeAreaView , RefreshControl} from "react-native";
+import {inject,observer} from "mobx-react/native";
 import {type AnimatedEvent} from "react-native/Libraries/Animated/src/AnimatedEvent";
 
 import FeedStore from "./FeedStore";
@@ -15,7 +15,9 @@ import type {NavigationProps} from "../components/Types";
 type FlatListItem<T> = {
     item: T
 };
-
+// type InjectedProps = {
+//     feedStore: FeedStore,
+// };
 type FeedProps = NavigationProps<> & {
     store: FeedStore,
     onScroll?: AnimatedEvent | () => void,
@@ -26,6 +28,9 @@ type FeedProps = NavigationProps<> & {
 @observer
 export default class Feed extends React.Component<FeedProps> {
 
+    state= {
+        refreshing: false
+    }
     @autobind
     // eslint-disable-next-line class-methods-use-this
     keyExtractor(item: FeedEntry): string {
@@ -36,6 +41,14 @@ export default class Feed extends React.Component<FeedProps> {
     loadMore() {
         this.props.store.loadFeed();
     }
+
+    _onRefresh = () => {
+    this.setState({refreshing: true});
+    this.props.store.checkForNewEntriesInFeed().then(() => {
+      this.setState({refreshing: false});
+      console.log("Hello")
+    });
+  }
 
     @autobind
     renderItem({ item }: FlatListItem<FeedEntry>): React.Node {
@@ -57,6 +70,12 @@ export default class Feed extends React.Component<FeedProps> {
                 <FlatList
                     showsVerticalScrollIndicator
                     data={feed}
+                    refreshControl={
+                    <RefreshControl
+                      refreshing={this.state.refreshing}
+                      onRefresh={this._onRefresh}
+                      color={'#f27842'}
+                    />}
                     keyExtractor={this.keyExtractor}
                     renderItem={this.renderItem}
                     onEndReachedThreshold={0.5}
