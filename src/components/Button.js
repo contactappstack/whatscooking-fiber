@@ -33,6 +33,7 @@ export default class Button extends React.PureComponent<ButtonProps> {
                     onPress,
                     style: computedStyle,
                     transparent: !primary || transparent,
+                    //elevation:0,
                     disabled
                 }}
             >
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     primary: {
         shadowColor: "#FF0213",
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 1,
+        shadowOpacity: 0,
         shadowRadius: 7
     }
 });
