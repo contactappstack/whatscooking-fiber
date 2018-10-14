@@ -1,7 +1,7 @@
 // @flow
 import {Asset} from "expo";
 
-const cover = require("./cover1.jpg");
+const cover = require("./bg2.jpeg");
 
 export default class Images {
 
