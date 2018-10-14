@@ -103,13 +103,13 @@ export default class Explore extends React.Component<ScreenProps<> & InjectedPro
                                 style={[styles.newPosts, { opacity, transform: [{ translateY }] }]}
                                 onClick={this.update}
                             >
-                            New posts
+                            {moment().format("dddd")}
                             </AnimatedText>
                             <AnimatedText
                                 type="header2"
                                 style={{ fontSize, marginTop }}
                             >
-                                {moment().format("dddd")}
+                                FoodTrail
                             </AnimatedText>
                         </View>
                         {
