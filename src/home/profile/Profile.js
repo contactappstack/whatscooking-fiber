@@ -96,7 +96,7 @@ export default class ProfileComp extends React.Component<ScreenProps<> & Injecte
                                 </View>
                             </TouchableOpacity>
                             <View style={styles.title}>
-                                <Text type="large" style={styles.outline}>AppStack</Text>
+                                <Text type="large" style={styles.outline}>FoodTrail</Text>
                                 <Text type="header2" style={styles.name}>{profile.name}</Text>
                             </View>
                             <Avatar size={avatarSize} style={styles.avatar} {...profile.picture} />
