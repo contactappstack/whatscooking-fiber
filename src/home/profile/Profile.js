@@ -92,7 +92,7 @@ export default class ProfileComp extends React.Component<ScreenProps<> & Injecte
                             <Image style={styles.cover} source={Images.cover} />
                             <TouchableOpacity onPress={this.settings} style={styles.settings}>
                                 <View>
-                                    <Icon name="settings" size={25} color="white" />
+                                    <Icon name="settings" size={35} color="white" />
                                 </View>
                             </TouchableOpacity>
                             <View style={styles.title}>
