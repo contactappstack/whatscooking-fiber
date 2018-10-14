@@ -37,7 +37,7 @@ export default class SignUpContainer extends React.Component<SignUpContainerProp
         const {title, subtitle, next, children, nextLabel, loading} = this.props;
         return (
             <Container gutter={1}>
-                <Content style={styles.content}>
+                <View style={styles.content}>
                     <View style={styles.innerContainer}>
                         <View>
                             <Text type="large">{subtitle}</Text>
@@ -49,7 +49,7 @@ export default class SignUpContainer extends React.Component<SignUpContainerProp
                             <Button label="Back" full onPress={this.back} />
                         </View>
                     </View>
-                </Content>
+                </View>
             </Container>
         );
     }
