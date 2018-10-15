@@ -58,10 +58,13 @@ export default class SignUpContainer extends React.Component<SignUpContainerProp
 const {height} = Dimensions.get("window");
 const styles = StyleSheet.create({
     content: {
-        padding: Theme.spacing.base
+        padding: Theme.spacing.base,
+
     },
     innerContainer: {
         height: height - (Theme.spacing.base * 2),
-        justifyContent: "center"
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });

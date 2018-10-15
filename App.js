@@ -120,10 +120,8 @@ export default class App extends React.Component<{}> {
     userFeedStore = new FeedStore();
 
     componentDidMount() {
-        StatusBar.setBarStyle("dark-content");
-        if (Platform.OS === "android") {
-            StatusBar.setBackgroundColor("black");
-        }
+        StatusBar.setBarStyle("default");
+        StatusBar.setBackgroundColor("#f27842");
     }
 
     render(): React.Node {
