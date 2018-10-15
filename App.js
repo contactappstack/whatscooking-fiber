@@ -36,6 +36,8 @@ const SFProTextSemibold = require("./fonts/SF-Pro-Text-Semibold.otf");
 const SFProTextRegular = require("./fonts/SF-Pro-Text-Regular.otf");
 // $FlowFixMe
 const SFProTextLight = require("./fonts/SF-Pro-Text-Light.otf");
+// $FlowFixMe
+const Billabong = require("./fonts/billabong.otf");
 
 useStrict(true);
 
@@ -95,7 +97,8 @@ class Loading extends React.Component<ScreenProps<>> {
                 "SFProText-Bold": SFProTextBold,
                 "SFProText-Semibold": SFProTextSemibold,
                 "SFProText-Regular": SFProTextRegular,
-                "SFProText-Light": SFProTextLight
+                "SFProText-Light": SFProTextLight,
+                "Billabong": Billabong
             });
             const icons = Font.loadAsync(Feather.font);
             await Promise.all([...images, fonts, icons]);

@@ -2,7 +2,9 @@
 import autobind from "autobind-decorator";
 import * as React from "react";
 import moment from "moment";
+
 import {StyleSheet,Image, ScrollView, Animated,View, SafeAreaView, TouchableWithoutFeedback, Platform, RefreshControl} from "react-native";
+
 import {inject, observer} from "mobx-react/native";
 
 import ProfileStore from "../ProfileStore";
@@ -104,7 +106,7 @@ export default class Explore extends React.Component<ScreenProps<> & InjectedPro
                             source={require('../../../app.png')}>
 
                           </Image>
-                          <AnimatedText></AnimatedText>
+              
                           <Text style={{alignSelf:'center',fontSize:24,color:'#f27842',paddingLeft:10,paddingTop:2,fontWeight:'500'}}>FoodTrail</Text>
                         </View>
                         {
@@ -168,5 +170,17 @@ const styles = StyleSheet.create({
     newPosts: {
         position: "absolute",
         top: 0
+    },
+    name: {
+        color: "#f27842",
+        //fontFamily: "Billabong"
     }
 });
+
+
+// <AnimatedText
+//     type="header2"
+//     style={{ fontSize, marginTop }}
+// >
+//     {moment().format("dddd")}
+// </AnimatedText>
