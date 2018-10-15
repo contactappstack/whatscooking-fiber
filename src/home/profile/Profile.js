@@ -92,11 +92,11 @@ export default class ProfileComp extends React.Component<ScreenProps<> & Injecte
                             <Image style={styles.cover} source={Images.cover} />
                             <TouchableOpacity onPress={this.settings} style={styles.settings}>
                                 <View>
-                                    <Icon name="settings" size={25} color="white" />
+                                    <Icon name="settings" size={35} color="white" />
                                 </View>
                             </TouchableOpacity>
                             <View style={styles.title}>
-                                <Text type="large" style={styles.outline}>{profile.outline}</Text>
+                                <Text type="large" style={styles.outline}>Foodtrail</Text>
                                 <Text type="header2" style={styles.name}>{profile.name}</Text>
                             </View>
                             <Avatar size={avatarSize} style={styles.avatar} {...profile.picture} />

@@ -1,11 +1,6 @@
-## React Native Fiber Firebase v1.1.2
-
-Thanks for purchasing the React Native Fiber Firebase.
+## React Native
 
 Follow the documentation to install and get started with the development:
-
 -   [Documentation](https://wcandillon.github.io/react-native-fiber/Firebase.html)
 -   [Product Page](https://market.nativebase.io/view/react-native-fiber-firebase)
--	[License Page](https://market.nativebase.io/licenses)
-
-Happy coding!
+-	  [License Page](https://market.nativebase.io/licenses)

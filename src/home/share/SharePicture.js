@@ -149,7 +149,8 @@ const styles = StyleSheet.create({
         ...Theme.typography.regular
     },
     btn: {
-        margin: Theme.spacing.base
+        margin: Theme.spacing.base,
+        shadowOpacity: 0
     },
     saving: {
         marginBottom: Theme.spacing.base

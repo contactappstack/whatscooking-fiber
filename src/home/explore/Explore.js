@@ -103,8 +103,13 @@ export default class Explore extends React.Component<ScreenProps<> & InjectedPro
                                 style={[styles.newPosts, { opacity, transform: [{ translateY }] }]}
                                 onClick={this.update}
                             >
-                            FoodTrail
-                            <Image style={{width:20,height:20}} source={require('../../../app.png')} />
+                             {moment().format("dddd")}
+                            </AnimatedText>
+                            <AnimatedText
+                                type="header2"
+                                style={[styles.name, { fontSize, marginTop }]}
+                            >
+                                Foodtrail
                             </AnimatedText>
 
                         </View>
@@ -169,6 +174,10 @@ const styles = StyleSheet.create({
     newPosts: {
         position: "absolute",
         top: 0
+    },
+    name: {
+        color: "#f27842",
+        //fontFamily: "Billabong"
     }
 });
 
