@@ -2,7 +2,7 @@
 import autobind from "autobind-decorator";
 import * as React from "react";
 import moment from "moment";
-import {StyleSheet, ScrollView, Animated,View, SafeAreaView, TouchableWithoutFeedback, Platform, RefreshControl} from "react-native";
+import {StyleSheet, ScrollView, Animated,View, SafeAreaView, TouchableWithoutFeedback, Platform, RefreshControl, Image} from "react-native";
 import {inject, observer} from "mobx-react/native";
 
 import ProfileStore from "../ProfileStore";
@@ -111,6 +111,7 @@ export default class Explore extends React.Component<ScreenProps<> & InjectedPro
                             >
                                 Foodtrail
                             </AnimatedText>
+
                         </View>
                         {
                             profile && (
@@ -179,3 +180,11 @@ const styles = StyleSheet.create({
         //fontFamily: "Billabong"
     }
 });
+
+
+// <AnimatedText
+//     type="header2"
+//     style={{ fontSize, marginTop }}
+// >
+//     {moment().format("dddd")}
+// </AnimatedText>
