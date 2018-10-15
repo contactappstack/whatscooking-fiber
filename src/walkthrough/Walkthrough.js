@@ -86,21 +86,21 @@ let share: Share;
 const slides = [
     {
         title: "Connect",
-        description: "Bring your friends closer by building a network of the people you love.",
+        description: "Connect over food and bring your friends closer by building a network of the people you love.",
         icon: <Connect ref={ref => (ref ? connect = ref : undefined)} />,
         show: () => connect.show(),
         hide: () => connect.hide()
     },
     {
-        title: "Chat",
-        description: "Send messages and stay up to date with friends whenever you need to.",
+        title: "Comment",
+        description: "Comment on your friends' posts and shower their dishes with love!",
         icon: <Chat ref={ref => (ref ? chat = ref : undefined)} />,
         show: () => chat.show(),
         hide: () => chat.hide()
     },
     {
         title: "Share",
-        description: "Send your best selfies and show friends what you’re cooking up.",
+        description: "Showcase your food photography skills and let friends know what you’re cooking up.",
         icon: <Share ref={ref => (ref ? share = ref : undefined)} />,
         show: () => share.show(),
         hide: () => share.hide()
