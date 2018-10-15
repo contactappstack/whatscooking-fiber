@@ -2,7 +2,7 @@
     "expo": {
         "name": "FoodTrail",
         "version": "1.1.1",
-        "description": "",
+        "description": "App for sharing photos and recipes for delicious cuisines",
         "sdkVersion": "27.0.0",
         "orientation": "portrait",
         "privacy": "public",
@@ -17,7 +17,7 @@
             "assetExts": ["otf"]
         },
         "androidStatusBar": {
-            "backgroundColor": "#ffffff",
+            "backgroundColor": "#000000",
             "barStyle": "dark-content"
         },
         "ios": {

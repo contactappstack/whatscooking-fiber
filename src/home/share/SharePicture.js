@@ -3,7 +3,7 @@ import moment from "moment";
 import autobind from "autobind-decorator";
 import * as React from "react";
 import {StyleSheet, TextInput, Image, Dimensions, View, Alert} from "react-native";
-import {Content} from "native-base";
+import {Content,Toast} from "native-base";
 
 import {
     NavHeader, Button, Theme, RefreshIndicator, Firebase, ImageUpload, serializeException, Text
@@ -96,14 +96,14 @@ export default class SharePicture extends React.Component<ScreenParams<Picture>,
         const {navigation} = this.props;
         const {loading} = this.state;
         const source = navigation.state.params;
-        if (loading) {
-            return (
-                <View style={styles.loading}>
-                    <RefreshIndicator />
-                    <Text style={styles.saving}>Uploading....</Text>
-                </View>
-            );
-        }
+        // if (loading) {
+        //     return (
+        //         <View style={styles.loading}>
+        //             <RefreshIndicator />
+        //             <Text style={styles.saving}>Uploading....</Text>
+        //         </View>
+        //     );
+        // }
         return (
             <View style={styles.container}>
                 <NavHeader back title="Share" {...{navigation}} />
