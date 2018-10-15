@@ -20,7 +20,7 @@ export default class Login extends React.Component<NavigationProps<*>, LoginStat
     @autobind
     async login(): Promise<void> {
       try{
-        let { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('602498550137033', {
+        let { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('281875266000180', {
             permissions: ['public_profile']
         });
         if (type === 'success') {

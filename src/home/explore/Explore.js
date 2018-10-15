@@ -100,10 +100,11 @@ export default class Explore extends React.Component<ScreenProps<> & InjectedPro
                     <Animated.View style={[styles.innerHeader, { height }]}>
                         <View style={{display:'flex', flexDirection: 'row'}}>
                           <Image
-                            style={{width: 55, height: 55}}
-                            source={require('../../../a.png')}>
+                            style={{width: 40, height: 40}}
+                            source={require('../../../app.png')}>
 
                           </Image>
+                          <AnimatedText></AnimatedText>
                           <Text style={{alignSelf:'center',fontSize:22,color:'#f27842',paddingLeft:10,paddingTop:2,fontWeight:'500'}}>FoodTrail</Text>
                         </View>
                         {
