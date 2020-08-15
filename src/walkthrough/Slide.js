@@ -1,7 +1,8 @@
 // @flow
 import * as React from "react";
 import {StyleSheet, Dimensions, View} from "react-native";
-import {LinearGradient, Constants} from "expo";
+import {LinearGradient} from "expo-linear-gradient";
+import Constants from 'expo-constants'
 
 import {Text, Theme} from "../components";
 

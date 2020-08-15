@@ -1,5 +1,5 @@
 // @flow
-import { ImageManipulator } from 'expo';
+import * as ImageManipulator from 'expo-image-manipulator'
 import Firebase from "./Firebase";
 import reduceImageAsync from './shrinkImageAsync';
 

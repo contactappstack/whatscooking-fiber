@@ -1,5 +1,5 @@
 // @flow
-import {Asset} from "expo";
+import { Asset } from 'expo-asset'
 
 const cover = require("./bg2.jpeg");
 
