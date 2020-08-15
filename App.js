@@ -1,9 +1,16 @@
+import 'react-native-gesture-handler';
 import * as React from "react";
 import {StatusBar, Platform} from "react-native";
 import {StyleProvider} from "native-base";
-import {SwitchNavigator, StackNavigator, TabNavigator} from "react-navigation";
-import {Font, AppLoading} from "expo";
-import {useStrict} from "mobx";
+import { createAppContainer, createSwitchNavigator} from "react-navigation";
+
+import { createStackNavigator } from "react-navigation-stack"
+import { createBottomTabNavigator } from "react-navigation-tabs"
+
+
+import {AppLoading} from "expo";
+import * as Font from 'expo-font';
+import {configure} from "mobx";
 import {Provider, inject} from "mobx-react";
 import {Feather} from "@expo/vector-icons";
 
@@ -38,7 +45,10 @@ const SFProTextLight = require("./fonts/SF-Pro-Text-Light.otf");
 // $FlowFixMe
 const Billabong = require("./fonts/billabong.otf");
 
-useStrict(true);
+//useStrict(true);
+configure({
+    enforceActions: 'observed'
+});
 
 const originalSend = XMLHttpRequest.prototype.send;
 // https://github.com/firebase/firebase-js-sdk/issues/283
@@ -129,7 +139,7 @@ export default class App extends React.Component<{}> {
         return (
             <StyleProvider style={getTheme(variables)}>
                 <Provider {...{feedStore, profileStore, userFeedStore}}>
-                    <AppNavigator />
+                    <AppContainer />
                 </Provider>
             </StyleProvider>
         );
@@ -143,18 +153,18 @@ const StackNavigatorOptions = {
     }
 };
 
-const ExploreNavigator = StackNavigator({
+const ExploreNavigator = createStackNavigator({
     Explore: { screen: Explore },
     Comments: { screen: Comments },
 }, StackNavigatorOptions);
 
-const ProfileNavigator = StackNavigator({
+const ProfileNavigator = createStackNavigator({
     Profile: { screen: Profile },
     Settings: { screen: Settings },
     Comments: { screen: Comments }
 }, StackNavigatorOptions);
 
-const ShareNavigator = StackNavigator({
+const ShareNavigator = createStackNavigator({
     Share: { screen: Share },
     Gallery: { screen: Gallery },
     ImageEdit:{ screen: ImageEdit},
@@ -162,7 +172,7 @@ const ShareNavigator = StackNavigator({
 
 }, StackNavigatorOptions);
 
-const HomeTabs = TabNavigator({
+const HomeTabs = createBottomTabNavigator({
     Explore: { screen: ExploreNavigator },
     Share: { screen: ShareNavigator },
     Profile: { screen: ProfileNavigator }
@@ -173,13 +183,13 @@ const HomeTabs = TabNavigator({
     swipeEnabled: false
 });
 
-const HomeNavigator = SwitchNavigator({
+const HomeNavigator = createSwitchNavigator({
     //Walkthrough: { screen: Walkthrough },
     Home: { screen: HomeTabs }
 }, StackNavigatorOptions);
 
 
-const AppNavigator = SwitchNavigator({
+const AppNavigator = createSwitchNavigator({
     Loading: { screen: Loading },
     Walkthrough: { screen: Walkthrough },
     Welcome: { screen: Welcome },
@@ -187,4 +197,5 @@ const AppNavigator = SwitchNavigator({
     Home: { screen: HomeNavigator }
 }, StackNavigatorOptions);
 
-export {AppNavigator};
+const AppContainer = createAppContainer(AppNavigator);
+export {AppContainer};
