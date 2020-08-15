@@ -5,7 +5,7 @@ import moment from "moment";
 
 import {StyleSheet,Image, ScrollView, Animated,View, SafeAreaView, TouchableWithoutFeedback, Platform, RefreshControl} from "react-native";
 
-import {inject, observer} from "mobx-react/native";
+import {inject, observer} from "mobx-react";
 
 import ProfileStore from "../ProfileStore";
 

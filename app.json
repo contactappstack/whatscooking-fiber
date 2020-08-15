@@ -3,7 +3,7 @@
         "name": "FoodTrail",
         "version": "1.1.1",
         "description": "App for sharing photos and recipes for delicious cuisines",
-        "sdkVersion": "27.0.0",
+        "sdkVersion": "38.0.0",
         "orientation": "portrait",
         "privacy": "public",
         "icon": "./app.png",
@@ -14,7 +14,6 @@
             "backgroundColor": "#ffffff"
         },
         "packagerOpts": {
-            "assetExts": ["otf"]
         },
         "androidStatusBar": {
             "backgroundColor": "#000000",

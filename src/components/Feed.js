@@ -2,7 +2,7 @@
 import autobind from "autobind-decorator";
 import * as React from "react";
 import {StyleSheet, View, FlatList, SafeAreaView , RefreshControl} from "react-native";
-import {inject,observer} from "mobx-react/native";
+import {inject,observer} from "mobx-react";
 import {type AnimatedEvent} from "react-native/Libraries/Animated/src/AnimatedEvent";
 
 import FeedStore from "./FeedStore";

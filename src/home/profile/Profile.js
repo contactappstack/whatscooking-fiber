@@ -3,7 +3,7 @@ import autobind from "autobind-decorator";
 import * as React from "react";
 import {View, StyleSheet, Dimensions, TouchableOpacity, Image,ScrollView,RefreshControl} from "react-native";
 import {Feather as Icon} from "@expo/vector-icons";
-import {inject, observer} from "mobx-react/native";
+import {inject, observer} from "mobx-react";
 import {Constants, LinearGradient} from "expo";
 import { NetInfo } from 'react-native';
 import ProfileStore from "../ProfileStore";

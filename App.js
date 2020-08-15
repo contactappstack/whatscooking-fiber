@@ -6,7 +6,7 @@ import {StyleProvider} from "native-base";
 import {SwitchNavigator, StackNavigator, TabNavigator} from "react-navigation";
 import {Font, AppLoading} from "expo";
 import {useStrict} from "mobx";
-import {Provider, inject} from "mobx-react/native";
+import {Provider, inject} from "mobx-react";
 import {Feather} from "@expo/vector-icons";
 
 import {Images, Firebase, FeedStore} from "./src/components";
