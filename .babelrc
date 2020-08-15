@@ -5,7 +5,7 @@
     "env": {
         "development": {
             "plugins": [
-                "transform-react-jsx-source"
+                ["@babel/plugin-proposal-decorators", { "legacy": true }]
             ]
         }
     }

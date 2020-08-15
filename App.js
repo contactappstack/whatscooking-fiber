@@ -1,5 +1,3 @@
-// @flow
-/* eslint-disable no-console, func-names */
 import * as React from "react";
 import {StatusBar, Platform} from "react-native";
 import {StyleProvider} from "native-base";
@@ -10,6 +8,7 @@ import {Provider, inject} from "mobx-react";
 import {Feather} from "@expo/vector-icons";
 
 import {Images, Firebase, FeedStore} from "./src/components";
+
 import type {ScreenProps} from "./src/components/Types";
 
 import {Welcome} from "./src/welcome";
@@ -126,10 +125,11 @@ export default class App extends React.Component<{}> {
 
     render(): React.Node {
         const {feedStore, profileStore, userFeedStore} = this;
+        console.log("Till here")
         return (
             <StyleProvider style={getTheme(variables)}>
                 <Provider {...{feedStore, profileStore, userFeedStore}}>
-                    <AppNavigator onNavigationStateChange={() => undefined} />
+                    <AppNavigator />
                 </Provider>
             </StyleProvider>
         );
