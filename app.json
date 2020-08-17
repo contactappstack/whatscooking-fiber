@@ -1,26 +1,26 @@
 {
-    "expo": {
-        "name": "FoodTrail",
-        "version": "1.1.1",
-        "description": "App for sharing photos and recipes for delicious cuisines",
-        "sdkVersion": "38.0.0",
-        "orientation": "portrait",
-        "privacy": "public",
-        "icon": "./app.png",
-        "primaryColor": "#f27842",
-        "splash": {
-            "image": "./splash.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#ffffff"
-        },
-        "packagerOpts": {
-        },
-        "androidStatusBar": {
-            "backgroundColor": "#000000",
-            "barStyle": "dark-content"
-        },
-        "ios": {
-            "bundleIdentifier": "com.wcandillon.fiber"
-        }
-    }
+  "expo": {
+    "name": "FoodTrail",
+    "version": "1.1.1",
+    "description": "App for sharing photos and recipes for delicious cuisines",
+    "sdkVersion": "38.0.0",
+    "orientation": "portrait",
+    "privacy": "public",
+    "icon": "./app.png",
+    "primaryColor": "#f27842",
+    "splash": {
+      "image": "./splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "packagerOpts": {},
+    "androidStatusBar": {
+      "backgroundColor": "#000000",
+      "barStyle": "dark-content"
+    },
+    "ios": {
+      "bundleIdentifier": "com.wcandillon.fiber"
+    },
+    "slug": "foodtrail"
+  }
 }
