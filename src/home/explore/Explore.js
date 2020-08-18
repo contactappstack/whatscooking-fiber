@@ -2,15 +2,12 @@
 import autobind from "autobind-decorator";
 import * as React from "react";
 import moment from "moment";
-
-import {StyleSheet,Image, ScrollView, Animated,View, SafeAreaView, TouchableWithoutFeedback, Platform, RefreshControl} from "react-native";
-
+import {StyleSheet,Image, StatusBar, ScrollView, Animated,View, SafeAreaView, TouchableWithoutFeedback, Platform, RefreshControl} from "react-native";
 import {inject, observer} from "mobx-react";
-
 import ProfileStore from "../ProfileStore";
-
 import {Text, Theme, Avatar, Feed, FeedStore} from "../../components";
 import type {ScreenProps} from "../../components/Types";
+
 
 const AnimatedText = Animated.createAnimatedComponent(Text);
 const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
@@ -24,6 +21,7 @@ type InjectedProps = {
     feedStore: FeedStore,
     profileStore: ProfileStore
 };
+
 
 @inject("feedStore", "profileStore") @observer
 export default class Explore extends React.Component<ScreenProps<> & InjectedProps, ExploreState> {
@@ -60,6 +58,7 @@ export default class Explore extends React.Component<ScreenProps<> & InjectedPro
     update(){
       this.forceUpdate();
     }
+    
 
     render(): React.Node {
         const {feedStore, profileStore, navigation} = this.props;
@@ -98,6 +97,7 @@ export default class Explore extends React.Component<ScreenProps<> & InjectedPro
 
         return (
               <View style={styles.container}>
+                <StatusBar barStyle="light-content"/>
                 <AnimatedSafeAreaView style={[styles.header, { shadowOpacity }]}>
                     <Animated.View style={[styles.innerHeader, { height }]}>
                         <View style={{display:'flex', flexDirection: 'row'}}>
@@ -124,13 +124,10 @@ export default class Explore extends React.Component<ScreenProps<> & InjectedPro
                 <Feed
 
                     store={feedStore}
-                    onScroll={Animated.event([{
-                        nativeEvent: {
-                            contentOffset: {
-                                y: scrollAnimation
-                            }
-                        }
-                    }])}
+                    onScroll={Animated.event(
+                        [{ nativeEvent: { contentOffset: { y: scrollAnimation}}}],
+                        {useNativeDriver: false}
+                        )}
                     {...{navigation}}
 
                 />

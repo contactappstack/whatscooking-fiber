@@ -2,7 +2,7 @@
 import autobind from "autobind-decorator";
 import * as React from "react";
 import {StyleSheet, View, Dimensions, TouchableWithoutFeedback, TouchableOpacity, Modal} from "react-native";
-import {Camera, Permissions} from "expo";
+import { Camera } from "expo-camera";
 import { Feather as Icon } from "@expo/vector-icons";
 
 import EnableCameraPermission from "./EnableCameraPermission";
@@ -30,7 +30,7 @@ export default class Share extends React.Component<ScreenProps<>, ShareState> {
     };
 
     async componentDidMount(): Promise<void> {
-        const {status} = await Permissions.askAsync(Permissions.CAMERA);
+        const {status} = await Camera.requestPermissionsAsync();
         this.setState({
             hasCameraPermission: status === "granted"
         });

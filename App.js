@@ -3,21 +3,15 @@ import * as React from "react";
 import {StatusBar, Platform} from "react-native";
 import {StyleProvider} from "native-base";
 import { createAppContainer, createSwitchNavigator} from "react-navigation";
-
 import { createStackNavigator } from "react-navigation-stack"
 import { createBottomTabNavigator } from "react-navigation-tabs"
-
-
 import {AppLoading} from "expo";
 import * as Font from 'expo-font';
 import {configure} from "mobx";
 import {Provider, inject} from "mobx-react";
 import {Feather} from "@expo/vector-icons";
-
 import {Images, Firebase, FeedStore} from "./src/components";
-
 import type {ScreenProps} from "./src/components/Types";
-
 import {Welcome} from "./src/welcome";
 import {Walkthrough} from "./src/walkthrough";
 import {Login} from "./src/sign-up";
@@ -29,6 +23,15 @@ import Gallery from "./src/home/share/Gallery";
 import ImageEdit from "./src/home/share/ImageEdit";
 import getTheme from "./native-base-theme/components";
 import variables from "./native-base-theme/variables/commonColor";
+import { useIsFocused } from '@react-navigation/native';
+
+// **** Manual change is needed *****//
+//Go to node_modules/react-native/Libraries/Core/Timer/JSTimers.js
+//Look for the variable MAX_TIMER_DURATION_MS
+//Change 60 * 1000 to 10000 * 1000
+//Save the changes and re-build your app.
+//*********************************//
+
 
 // $FlowFixMe
 const SFProTextMedium = require("./fonts/SF-Pro-Text-Medium.otf");
@@ -121,12 +124,15 @@ class Loading extends React.Component<ScreenProps<>> {
     }
 }
 
+
 // eslint-disable-next-line react/no-multi-comp
 export default class App extends React.Component<{}> {
 
     profileStore = new ProfileStore();
     feedStore = new FeedStore();
     userFeedStore = new FeedStore();
+
+    
 
     componentDidMount() {
         StatusBar.setBarStyle("default");
@@ -136,6 +142,7 @@ export default class App extends React.Component<{}> {
     render(): React.Node {
         const {feedStore, profileStore, userFeedStore} = this;
         console.log("Till here")
+        
         return (
             <StyleProvider style={getTheme(variables)}>
                 <Provider {...{feedStore, profileStore, userFeedStore}}>
