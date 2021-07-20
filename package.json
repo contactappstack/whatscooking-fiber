@@ -70,7 +70,7 @@
         "moment": "^2.27.0",
         "native-base": "2.13.13",
         "react": "16.13.1",
-        "react-native": "0.63.2",
+        "react-native": "0.64.1",
         "react-native-camera": "^3.36.0",
         "react-native-camera-roll-picker": "2.0.0",
         "react-native-fade-in-image": "^1.5.0",
